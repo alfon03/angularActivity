@@ -1,25 +1,30 @@
-<ul>
-    <li *ngFor="let task of tasks" [ngClass]="{ 'tachado': task.completed}">
-    {{ task.title }}    <span *ngIf="task.completed">✅</span>
-    
-    <button class="m-3  p-3 btn btn-primary" (click)="toggleCompleted(task)">Marcar como {{ task.completed ? 'pendiente' : 'completada' }}</button>
-    <!--Falta terminar el ejercicio 4-->
-    <!--<app-task [task]="task"></app-task>-->
+
+<div class="container m-3">
+  <ul>
+    <li *ngFor="let task of tasks">
+      <app-task
+        [task]="task"
+        (delete)="deleteTask($event)"
+        (toggleCompleted)="toggleCompleted(task)">
+      </app-task>
     </li>
   </ul>
 
-  <div class="container">
   <div class="mb-3">
-    <label for="addTarea" class="form-label">Agregar Tarea</label>
-    <input class="form-control"  id="addTarea" [(ngModel)]="newTask" (input)="error = ''" placeholder="Título de la nueva tarea" />
-    <button class="btn btn-secondary m-3 p-3" [disabled]="!newTask.trim()" (click)="addTask()">Añadir tarea</button>
+    <div class="row">
 
+      <div class="col md-6">
+        <label for="addTarea" class="form-label">Agregar Tarea</label>
+        <input class="form-control" id="addTarea" [(ngModel)]="newTask" (input)="error = ''" placeholder="Título de la nueva tarea" />
+      </div>
+      <div class="col md-6">
+        <button class="btn btn-secondary m-3 p-3" [disabled]="!newTask.trim()" (click)="addTask()">Añadir tarea</button>
+
+      </div>
+    </div>
+
+  </div>
 </div>
-</div>
+
 <p *ngIf="tasks.length === 0">No hay tareas pendientes</p>
-
-
 <p *ngIf="error" class="error">{{ error }}</p>
-
-
-

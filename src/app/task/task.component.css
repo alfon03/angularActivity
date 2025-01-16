@@ -1,4 +1,11 @@
-.completed {
-    color: green;
-  }
-  
+.tachado {
+  text-decoration: line-through;
+}
+button {
+  margin: 5px;
+}
+
+.completed{
+  color: rgb(13, 177, 13);
+  margin-left: 3px;
+}

@@ -1,2 +1,11 @@
-<h3>{{ task?.title }}
-<p>Status: <span *[ngClass]="{'completed': task?.completed}">{{ task?.completed ? 'completed' : 'pending' }}</span></p>
+<div class="task-item">
+    <span [ngClass]="{ 'tachado': task?.completed }">{{ task?.title }}</span>
+    <span *ngIf="task?.completed" class="material-symbols-outlined completed">
+        check
+        </span>
+    <button class="btn btn-primary" (click)="onToggleCompleted()">
+      Marcar como {{ task?.completed ? 'pendiente' : 'completada' }}
+    </button>
+    <button class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+  </div>
+  

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { TasksComponent } from "./tasks/tasks.component";
 import { NavbarComponent } from './navbar/navbar.component';
 

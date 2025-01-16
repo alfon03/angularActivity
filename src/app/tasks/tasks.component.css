@@ -1,6 +1,8 @@
-.tachado {
-    text-decoration: line-through;
-  }
-.error {
-    color: rgb(204, 12, 12);
-} 
+/* tasks.component.css */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.task-item {
+  margin: 10px 0;
+}
