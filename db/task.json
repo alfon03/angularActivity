@@ -1,1 +1,7 @@
-{}
+{
+    "tasks": [
+        { "id": 1, "title": "Ir al mercadona", "completed": false },
+        { "id": 2, "title": "Estudiar", "completed": true },
+        { "id": 3, "title": "Ir a trabajar", "completed": false }
+      ]
+}
