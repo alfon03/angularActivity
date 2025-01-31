@@ -1,11 +1,29 @@
-<div class="task-item">
-    <span [ngClass]="{ 'tachado': task?.completed }">{{ task?.title }}</span>
-    <span *ngIf="task?.completed" class="material-symbols-outlined completed">
-        check
-        </span>
-    <button class="btn btn-primary" (click)="onToggleCompleted()">
-      Marcar como {{ task?.completed ? 'pendiente' : 'completada' }}
-    </button>
-    <button class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+<div
+  class="list-group-item d-flex justify-content-between align-items-center border rounded mb-3 p-3"
+>
+  <div>
+    <h5 class="mb-1">
+      @if (task.completed) {
+      <span class="text-decoration-line-through text-muted">
+        {{ task.title }}
+      </span>
+      <span class="ms-2 text-success">✅</span>
+      } @else {
+
+      {{ task.title }}
+      }
+    </h5>
   </div>
-  
+
+  <div class="btn-group">
+    <button class="btn btn-info btn-sm" [routerLink]="['/task', task.id]">
+      Details
+    </button>
+    <button class="btn btn-success btn-sm ms-2" (click)="completeTask()">
+      {{ task.completed ? "Mark as Incomplete" : "Mark as Complete" }}
+    </button>
+    <button class="btn btn-danger btn-sm ms-2" (click)="deleteTask()">
+      Delete
+    </button>
+  </div>
+</div>

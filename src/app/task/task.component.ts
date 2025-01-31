@@ -1,26 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Task } from '../interfaces/task';
+import { TaskService } from '../services/task.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task',
-  imports: [CommonModule],
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  imports: [RouterLink],
+  templateUrl: './task.component.html'
 })
 export class TaskComponent {
-  @Input() task: { id: number, title: string, completed: boolean } | undefined;
-  @Output() delete = new EventEmitter<number>();
-  @Output() toggleCompleted = new EventEmitter<void>();
 
-  onDelete() {
-    if (this.task) {
-      this.delete.emit(this.task.id); 
-    }
+  @Input() task!: Task; 
+  @Output() onDeleteTask: EventEmitter<string> = new EventEmitter();
+  // constructor(private taskService: TaskService){}
+
+  // Otra forma de inyectar el servicio
+  private taskService: TaskService = inject(TaskService);
+
+  completeTask(){
+    this.taskService.changeTaskStatus(this.task.id, this.task.completed)
   }
 
-  onToggleCompleted() {
-    if (this.task) {
-      this.toggleCompleted.emit(); 
-    }
+  deleteTask(){
+    this.taskService.deleteTask(this.task.id)
   }
 }
